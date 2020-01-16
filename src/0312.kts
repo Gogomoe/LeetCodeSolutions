@@ -2,30 +2,29 @@ import kotlin.math.max
 
 class Solution {
     fun maxCoins(nums: IntArray): Int {
-        val dp = Array(nums.size) { IntArray(nums.size) }
-        val res = maxCoinsInRange(nums, dp, 0, nums.size - 1)
-        return res
-    }
+        val n = nums.size
+        val list = listOf(1, *nums.toTypedArray(), 1)
+        val dp = Array(nums.size + 2) { IntArray(nums.size + 2) }
+        for (len in 1..n) {
+            for (left in 1..(n - len + 1)) {
+                val right = left + len - 1
 
-    private fun maxCoinsInRange(nums: IntArray, dp: Array<IntArray>, left: Int, right: Int): Int {
-        if (left > right) return 0
-//        if (left == right) return nums[left]
-        if (dp[left][right] != 0) return dp[left][right]
+                var maxCoins = 0
 
-        var maxCoins = 0
-        /**
-         * i 表示最后区间内最后一个戳爆气球的位置，因此乘的是 `nums[left - 1]`, `nums[right + 1]`
-         * `maxCoinsInRange` 会考虑到 `left - 1` 和 `right + 1` 位置的气球
-         * 上方注释位置应该改成 `nums[left - 1] * nums[left] * nums[left + 1]`
-         */
-        for (i in left..right) {
-            val coins = nums.getOrElse(left - 1) { 1 } * nums[i] * nums.getOrElse(right + 1) { 1 }
-            val sum = coins + maxCoinsInRange(nums, dp, left, i - 1) + maxCoinsInRange(nums, dp, i + 1, right)
-            maxCoins = max(maxCoins, sum)
+                /**
+                 * i 表示最后区间内最后一个戳爆气球的位置，因此乘的是 `list[left - 1]`, `list[right + 1]`
+                 */
+                for (i in left..right) {
+                    val coins = list[left - 1] * list[i] * list[right + 1] + dp[left][i - 1] + dp[i + 1][right]
+                    maxCoins = max(maxCoins, coins)
+                }
+                dp[left][right] = maxCoins
+
+            }
         }
-        dp[left][right] = maxCoins
-        return maxCoins
+        return dp[1][n]
     }
+
 }
 
 println(Solution().maxCoins(intArrayOf(3, 2, 5)))
