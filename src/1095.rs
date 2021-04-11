@@ -63,10 +63,10 @@ impl Solution {
 struct MountainArray {}
 
 impl MountainArray {
-    fn get(index: i32) -> i32 {
+    fn get(&self, index: i32) -> i32 {
         unimplemented!();
     }
-    fn length() -> i32 {
+    fn length(&self) -> i32 {
         unimplemented!();
     }
 }
