@@ -20,7 +20,7 @@ class Solution {
         distTo[K - 1] = 0
 
         while (queue.isNotEmpty()) {
-            val (node, time) = queue.poll()
+            val (node, _) = queue.poll()
 
             for ((adj, cost) in node.adj) {
                 val oldDist = distTo[adj.id]
@@ -35,6 +35,6 @@ class Solution {
         }
 
         if (distTo.any { it == Int.MAX_VALUE }) return -1
-        return distTo.max()!!
+        return distTo.maxOrNull()!!
     }
 }

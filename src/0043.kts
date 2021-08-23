@@ -13,10 +13,10 @@ class Solution {
         val builder = StringBuilder()
         for (i in (result.size - 1) downTo 1) {
             result[i - 1] += result[i] / 10
-            builder.append((result[i] % 10 + '0'.toInt()).toChar())
+            builder.append((result[i] % 10 + '0'.code).toChar())
         }
         if (result[0] != 0) {
-            builder.append((result[0] + '0'.toInt()).toChar())
+            builder.append((result[0] + '0'.code).toChar())
         }
         return builder.reverse().toString()
     }

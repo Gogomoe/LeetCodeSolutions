@@ -1,7 +1,7 @@
 class Solution {
     fun printVertically(s: String): List<String> {
         val ss = s.split(' ')
-        val width = ss.map { it.length }.max()!!
+        val width = ss.maxOf { it.length }
         val cs = Array(width) { CharArray(ss.size) { ' ' } }
         for (i in ss.indices) {
             for (j in cs.indices) {

@@ -6,8 +6,8 @@ class Solution {
     fun maximumGap(nums: IntArray): Int {
         val n = nums.size
         if (n < 2) return 0
-        val min = nums.min()!!
-        val max = nums.max()!!
+        val min = nums.minOrNull()!!
+        val max = nums.maxOrNull()!!
         if (min == max) return 0
         if (n == 2) return max - min
 

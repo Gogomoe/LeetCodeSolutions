@@ -1,8 +1,8 @@
 import kotlin.math.max
 
 class Solution {
-    fun maxProfitAssignment(difficulty: IntArray, profit: IntArray, worker: IntArray): Int {
-        val zip = difficulty.mapIndexed { index, diff -> diff to profit[index] }.sortedBy { it.first }
+    fun maxProfitAssignment(difficulty: IntArray, profits: IntArray, worker: IntArray): Int {
+        val zip = difficulty.mapIndexed { index, diff -> diff to profits[index] }.sortedBy { it.first }
         worker.sort()
 
         var index = -1

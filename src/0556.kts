@@ -15,7 +15,7 @@ class Solution {
         val pa = p + 1
         val a = digits[pa]
         val frontDigits = digits.subList(0, pa)
-        val b = frontDigits.filter { it > a }.min()!!
+        val b = frontDigits.filter { it > a }.minOrNull()!!
         val pb = frontDigits.lastIndexOf(b)
 
         frontDigits[pb] = a

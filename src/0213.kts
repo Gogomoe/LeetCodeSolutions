@@ -4,7 +4,7 @@ class Solution {
     fun rob(nums: IntArray): Int {
         val len = nums.size
         if (len <= 3) {
-            return nums.max() ?: 0
+            return nums.maxOrNull() ?: 0
         }
         val fromStart = IntArray(len)
         val fromSecond = IntArray(len)
