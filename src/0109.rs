@@ -1,19 +1,3 @@
-#[derive(PartialEq, Eq, Clone, Debug)]
-pub struct ListNode {
-    pub val: i32,
-    pub next: Option<Box<ListNode>>,
-}
-
-impl ListNode {
-    #[inline]
-    pub fn new(val: i32) -> Self {
-        ListNode {
-            next: None,
-            val,
-        }
-    }
-}
-
 #[derive(Debug, PartialEq, Eq)]
 pub struct TreeNode {
     pub val: i32,
@@ -65,19 +49,11 @@ fn build_bst(head: Option<Box<ListNode>>, len: i32) -> (Option<Rc<RefCell<TreeNo
 
 struct Solution {}
 
+use leetcode_solution::{ListNode, make_list};
+
 fn main() {
     println!("{:?}", Solution::sorted_list_to_bst(make_list(vec![-10, -3, 0, 5, 9])));
     println!("{:?}", Solution::sorted_list_to_bst(make_list(vec![]))); // []
     println!("{:?}", Solution::sorted_list_to_bst(make_list(vec![0]))); // [0]
     println!("{:?}", Solution::sorted_list_to_bst(make_list(vec![1, 3])));
-}
-
-pub fn make_list(vec: Vec<i32>) -> Option<Box<ListNode>> {
-    let mut list = None;
-    for value in vec.into_iter().rev() {
-        let mut node = Box::new(ListNode::new(value));
-        node.next = list;
-        list = Some(node);
-    }
-    return list;
 }

@@ -1,20 +1,3 @@
-// Definition for singly-linked list.
-#[derive(PartialEq, Eq, Clone, Debug)]
-pub struct ListNode {
-    pub val: i32,
-    pub next: Option<Box<ListNode>>,
-}
-
-impl ListNode {
-    #[inline]
-    fn new(val: i32) -> Self {
-        ListNode {
-            next: None,
-            val,
-        }
-    }
-}
-
 impl Solution {
     pub fn partition(mut head: Option<Box<ListNode>>, x: i32) -> Option<Box<ListNode>> {
         let mut result: Option<Box<ListNode>> = None;
@@ -38,17 +21,9 @@ impl Solution {
 
 struct Solution {}
 
-fn main() {
-    println!("{:?}", Solution::partition(make_list(vec![1, 4, 3, 2, 5, 2]), 3)); // [1,2,2,4,3,5]
-    println!("{:?}", Solution::partition(make_list(vec![2, 1]), 2)); // [1,2]
-}
+use leetcode_solution::{ListNode, make_list, print_list};
 
-fn make_list(vec: Vec<i32>) -> Option<Box<ListNode>> {
-    let mut list = None;
-    for value in vec.into_iter().rev() {
-        let mut node = Box::new(ListNode::new(value));
-        node.next = list;
-        list = Some(node);
-    }
-    return list;
+fn main() {
+    print_list(Solution::partition(make_list(vec![1, 4, 3, 2, 5, 2]), 3)); // [1,2,2,4,3,5]
+    print_list(Solution::partition(make_list(vec![2, 1]), 2)); // [1,2]
 }

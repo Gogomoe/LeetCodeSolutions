@@ -1,22 +1,5 @@
 use std::ptr::null_mut;
 
-// Definition for singly-linked list.
-#[derive(PartialEq, Eq, Clone, Debug)]
-pub struct ListNode {
-    pub val: i32,
-    pub next: Option<Box<ListNode>>,
-}
-
-impl ListNode {
-    #[inline]
-    fn new(val: i32) -> Self {
-        ListNode {
-            next: None,
-            val,
-        }
-    }
-}
-
 impl Solution {
     fn make_ptr(l: &Option<Box<ListNode>>) -> *mut ListNode {
         match l {
@@ -62,26 +45,10 @@ impl Solution {
     }
 }
 
-
 struct Solution {}
 
+use leetcode_solution::{ListNode, make_list, print_list};
+
 fn main() {
-    let mut l2 = Box::new(ListNode::new(2));
-    let mut l4 = Box::new(ListNode::new(4));
-    let l3 = Box::new(ListNode::new(3));
-    l4.next = Some(l3);
-    l2.next = Some(l4);
-
-    let mut l5 = Box::new(ListNode::new(5));
-    let mut l6 = Box::new(ListNode::new(6));
-    let l4 = Box::new(ListNode::new(4));
-    l6.next = Some(l4);
-    l5.next = Some(l6);
-
-    let mut res = Solution::add_two_numbers(Some(l2), Some(l5));
-    while res.is_some() {
-        let value = res.unwrap();
-        println!("{}", value.val);
-        res = value.next;
-    }
+    print_list(Solution::add_two_numbers(make_list(vec![2, 4, 3]), make_list(vec![5, 6, 4]))); // [7,0,8]
 }

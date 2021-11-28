@@ -1,20 +1,3 @@
-// Definition for singly-linked list.
-#[derive(PartialEq, Eq, Clone, Debug)]
-pub struct ListNode {
-    pub val: i32,
-    pub next: Option<Box<ListNode>>,
-}
-
-impl ListNode {
-    #[inline]
-    fn new(val: i32) -> Self {
-        ListNode {
-            next: None,
-            val,
-        }
-    }
-}
-
 impl Solution {
     pub fn reverse_between(mut head: Option<Box<ListNode>>, left: i32, right: i32) -> Option<Box<ListNode>> {
         if left == right {
@@ -50,21 +33,13 @@ fn reverse_first_k_nodes(head: Option<Box<ListNode>>, k: i32) -> Option<Box<List
 
 struct Solution {}
 
-fn main() {
-    println!("{:?}", Solution::reverse_between(make_list(vec![1, 2, 3, 4, 5]), 2, 4));
-    // [1,4,3,2,5]
-    println!("{:?}", Solution::reverse_between(make_list(vec![1, 2, 3, 4, 5]), 2, 5));
-    // [1,5,4,3,2]
-    println!("{:?}", Solution::reverse_between(make_list(vec![1, 2, 3, 4, 5]), 1, 4));
-    // [4,3,2,1,5]
-}
+use leetcode_solution::{ListNode, make_list, print_list};
 
-fn make_list(vec: Vec<i32>) -> Option<Box<ListNode>> {
-    let mut list = None;
-    for value in vec.into_iter().rev() {
-        let mut node = Box::new(ListNode::new(value));
-        node.next = list;
-        list = Some(node);
-    }
-    return list;
+fn main() {
+    print_list(Solution::reverse_between(make_list(vec![1, 2, 3, 4, 5]), 2, 4));
+    // [1,4,3,2,5]
+    print_list(Solution::reverse_between(make_list(vec![1, 2, 3, 4, 5]), 2, 5));
+    // [1,5,4,3,2]
+    print_list(Solution::reverse_between(make_list(vec![1, 2, 3, 4, 5]), 1, 4));
+    // [4,3,2,1,5]
 }
